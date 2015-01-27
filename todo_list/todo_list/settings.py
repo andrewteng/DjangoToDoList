@@ -23,6 +23,7 @@ SECRET_KEY = 'w)is#q3-35ai!8#5*#olt4s+pfk04u^7+uvwikov)e8j1%3z#9'
 DEBUG = True
 
 TEMPLATE_DEBUG = True
+TEMPLATE_DIRS = '*/DjangoToDoList/todo_list/templates',
 
 ALLOWED_HOSTS = []
 
@@ -60,8 +61,9 @@ WSGI_APPLICATION = 'todo_list.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'), 
+         'ENGINE': 'django.db.backends.sqlite3',
+       # 'ENGINE': 'sqlite3'
+	 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'), 
      }
 }
 
