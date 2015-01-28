@@ -5,7 +5,7 @@ import datetime
 
 class List(models.Model): 
 
-  title = models.CharField(maxlength=250, unique=True) 
+  title = models.CharField(max_length=250, unique=True) 
   def __str__(self): 
     return self.title 
   class Meta: 
@@ -27,7 +27,7 @@ PRIORITY_CHOICES = (
 
 class Item(models.Model): 
 
-  title = models.CharField(maxlength=250) 
+  title = models.CharField(max_length=250) 
 
   created_date = models.DateTimeField(default=datetime.datetime.now) 
 
