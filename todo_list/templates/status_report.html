@@ -1,19 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'style.css' %}" media="screen" type="text/css" />
+</head>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">  
-
-<html xmlns="http://www.w3.org/1999/xhtml">  
-
-  <head>  
-
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
-
-    <title>To-do List Status Report</title>  
-
-  </head>  
-
-  <body>  
-
-    <h1>To-do list status report</h1>  
+<body>
+    <div class="container">
+    <div id="login-form">
+        <h1> welcome.</h1>
+        <a href="addTask.html" style="text-decoration:none"><font color ="#198d98">+add</font></a> a task<p></p>
+        <h1> to-do list.</h1>
 
 {% for list_dict in todo_listing %}  
 
@@ -28,9 +26,10 @@
     </ul>  
 
 {% endfor %}  
+        
+            </div>
+</div>
 
   </body>  
 
 </html>
-
-
