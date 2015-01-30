@@ -1,5 +1,5 @@
 """
-Django settings for todo_list project.
+Django settings for gtd project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import os.path
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -17,16 +18,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'w)is#q3-35ai!8#5*#olt4s+pfk04u^7+uvwikov)e8j1%3z#9'
+SECRET_KEY = '20-=jr(!(8zxx2q8=lwr5o(^&s0=k%rjj68u9blq#-4miide6s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 TEMPLATE_DEBUG = True
-TEMPLATE_DIRS = '*/DjangoToDoList/todo_list/templates',
+
+TEMPLATE_DIRS = (os.path.join('templates'),)
+
+#'/Users/jbennett/django-projects/gtd/todo/templates'
 
 ALLOWED_HOSTS = []
 
+SITE_ID=1
 
 # Application definition
 
@@ -38,7 +43,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    #'todo_list.todo',    
+    'todo',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -51,9 +56,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'todo_list.urls'
+ROOT_URLCONF = 'gtd.urls'
 
-WSGI_APPLICATION = 'todo_list.wsgi.application'
+WSGI_APPLICATION = 'gtd.wsgi.application'
 
 
 # Database
@@ -61,10 +66,9 @@ WSGI_APPLICATION = 'todo_list.wsgi.application'
 
 DATABASES = {
     'default': {
-         'ENGINE': 'django.db.backends.sqlite3',
-       # 'ENGINE': 'sqlite3'
-	 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'), 
-     }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
 
 # Internationalization
@@ -85,3 +89,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (os.path.join('static'),)

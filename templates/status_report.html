@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'style.css' %}" media="screen" type="text/css" />
+</head>
+
+<body>
+    <div class="container">
+    <div id="login-form">
+        <p></p>
+        <h1> welcome, {{ user.username }}</h1>
+        below are your current tasks:  <p></p>
+        {% for list_dict in todo_listing %}  
+      <li>{{ list_dict.list_object.title }}</li>
+        {% endfor %}  
+        <p></p><a href="../addTask" style="text-decoration:none"><font color ="#198d98">+  add new task</font></a>
+        
+    </div>
+    </div>
+    
+</body>  
+</html>
