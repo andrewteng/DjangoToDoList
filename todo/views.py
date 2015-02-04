@@ -1,6 +1,7 @@
 from django.contrib.auth import logout
 from django.shortcuts import render_to_response  
 from django.http import HttpResponseRedirect
+from datetime import datetime 
 
 from todo.models import List  
 from todo.models import Item  
@@ -24,10 +25,16 @@ def logout_page(request):
 
 def login(request):
 
-        return render_to_response('login.html')
+    return render_to_response('login.html')
 
 def addTask(request):
-
+#    item_title = request.GET.get('title')
+#    item_date = request.GET.get('created_date')
+#    item_priority = request.GET.get('priority')
+#    item_completed = request.GET.get('completed')
+#    new_task = Item(title=item_title,created_date=item_date)
+#    new_task.save()
+#    return HttpResponse(new_task.id)
     return render_to_response('addTask.html')
 
 def createAcct(request):
