@@ -10,13 +10,16 @@
     <div class="container">
     <div id="login-form">
         <p></p>
-        <h1> welcome, {{ user.username }}</h1>
+        <h1> welcome, {{ user.get_username }} </h1>
         below are your current tasks:  <p></p>
         {% for list_dict in todo_listing %}  
       <li>{{ list_dict.list_object.title }}</li>
         {% endfor %}  
-        <p></p><a href="../addTask" style="text-decoration:none"><font color ="#198d98">+  add new task</font></a>
-        
+        <p></p><form>
+          <form action="action_page.php">
+          <input type="text" placeholder="+ add task" style="background-color: transparent"></input><p></p>
+          <button><a href="/logout" style="text-decoration:none"><font color="#ffffff">logout</font></a></button>
+        </form>        
     </div>
     </div>
     
