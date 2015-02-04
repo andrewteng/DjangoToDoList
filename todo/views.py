@@ -1,44 +1,30 @@
-from django.contrib.auth import logout
-from django.shortcuts import render_to_response  
-from django.http import HttpResponseRedirect
-from datetime import datetime 
+from django.contrib.auth import authenticate, login as auth_login, logout
+from django.shortcuts import render_to_response, render
+from django.http import HttpResponseRedirect, HttpResponse
+from django.template import RequestContext, loader
+from django.contrib.auth.models import User
 
-from todo.models import List  
-from todo.models import Item  
+from todo.models import Item
+from todo.forms import Form
 
-'''
-def login(request):
-    user_obj = User.objects.filter(email=request.POST.get('email'), password=request.POST.get('password'))
-    if user_obj.count():
-        print (user_obj)
-        request.session['user_id']=user_obj[0].id
-        request.session['fname']=user_obj[0].fname
-    return HttpResponseRedirect('/')
-'''
+def login (request):
+    if (request.method == 'POST'):
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate (username = username, password = password)
+        if user:
+                if user.is_active:
+                    auth_login (request, user)
+                    return HttpResponseRedirect ('/report/') 
+        else:
+            return HttpResponse ("Username/Password combination not found.")
+    else:
+        return render(request, 'login.html', {})
 
-def logout_page(request):
-    """
-    Log users out and re-direct them to the main page.
-    """
+
+def logout(request):
     logout(request)
     return HttpResponseRedirect('/')
-
-def login(request):
-
-    return render_to_response('login.html')
-
-def addTask(request):
-#    item_title = request.GET.get('title')
-#    item_date = request.GET.get('created_date')
-#    item_priority = request.GET.get('priority')
-#    item_completed = request.GET.get('completed')
-#    new_task = Item(title=item_title,created_date=item_date)
-#    new_task.save()
-#    return HttpResponse(new_task.id)
-    return render_to_response('addTask.html')
-
-def createAcct(request):
-    return render_to_response('createAcct.html')
                               
 def status_report(request):  
 

@@ -27,13 +27,22 @@ TEMPLATE_DEBUG = True
 
 TEMPLATE_DIRS = (os.path.join('templates'),)
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.request',
+    'django.contrib.auth.context_processors.auth',
+)
+
 #'/Users/jbennett/django-projects/gtd/todo/templates'
 
 ALLOWED_HOSTS = []
 
+
 SITE_ID=1
 
 # Application definition
+
+CONTEXT_PROCESSORS = 'django.core.context_processors.csrf'
+
 
 INSTALLED_APPS = (
     'django.contrib.admin',

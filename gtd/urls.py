@@ -8,8 +8,8 @@ urlpatterns = patterns('',
     url(r'^report/$', 'todo.views.status_report'),
     url(r'^home/$', 'todo.views.login'),
     #url(r'^logout/$', logout_page),
-    url(r'^createAcct/$', 'todo.views.createAcct'),
-    url(r'^addTask/$', 'todo.views.addTask'),                
+    #url(r'^createAcct/$', 'todo.views.createAcct'),
+    #url(r'^addTask/$', 'todo.views.addTask'),                
                        
     # Serve static content.
     (r'^static/(?P<path>.*)$', 'django.views.static.serve',
