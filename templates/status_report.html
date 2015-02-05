@@ -10,15 +10,6 @@
     <div class="container">
     <div id="login-form">
         <p></p>
-<<<<<<< HEAD
-        <h1> welcome, {{ user.get_username }} </h1>
-        below are your current tasks:  <p></p>
-        {% for todo_list in todo_listing %}
-        <form action = '' method ="POST">
-        {% csrf_token %}
-          <li>{{ list_dict.list_object.title }}</li> 
-          <b> {{item.title}}</b>
-=======
         <h1> welcome, {{ user.get_username }}</h1>
           below are your current tasks.  <p></p>   
             <form action='' method ="POST">
@@ -43,7 +34,6 @@
         <input type ="hidden" name="listid" value="{{item.id}}" />
                 
 	    </li></form>
->>>>>>> 0615f270a6687ed080a45a8b22ad2ba69faebe38
         {% endfor %}  
         <p></p>
 
