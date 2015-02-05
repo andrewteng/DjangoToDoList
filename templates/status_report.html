@@ -10,15 +10,39 @@
     <div class="container">
     <div id="login-form">
         <p></p>
-        <h1> welcome, {{ user.get_username }} </h1>
-        below are your current tasks:  <p></p>
-        {% for list_dict in todo_listing %}  
-      <li>{{ list_dict.list_object.title }}</li>
+        <h1> welcome, {{ user.get_username }}</h1>
+          below are your current tasks.  <p></p>   
+            <form action='' method ="POST">
+          {% csrf_token %}
+              <input type="text" name="Item" placeholder="+ add task" style="background-color: transparent"></input>
+              <input type ="submit" value="Add" name="Add" style="display:none"></input>
+        </form><p></p>    
+        </div>  
+        {% for item in todo_list %}  
+	    <form action='' method ="POST">
+        {% csrf_token %}    
+        
+        <table style="width:100%">
+            <col width="250">
+            <col width="16">
+            <tr>
+                <td>{{ item.title }}</td>
+                <td><input type= "image" src="https://cdn4.iconfinder.com/data/icons/linecon/512/delete-128.png" width="16" height="16" value="delete" name="delete"></input></td>		
+            </tr>
+        </table>
+            
+        <input type ="hidden" name="listid" value="{{item.id}}" />
+                
+	    </li></form>
         {% endfor %}  
-        <p></p><form>
-          <form action="action_page.php">
-          <input type="text" placeholder="+ add task" style="background-color: transparent"></input><p></p>
-          <button><a href="/logout" style="text-decoration:none"><font color="#ffffff">logout</font></a></button>
+        <p></p>
+
+
+        <div id="login-form">
+        <form action ="/logout/" method ="POST">
+        <form id = "logout_form" action "/" method="POST">    
+            {% csrf_token %}
+            <button><a value="logout" name="logout" style="text-decoration:none"><font color="#ffffff">logout</font></a></button>
         </form>        
     </div>
     </div>

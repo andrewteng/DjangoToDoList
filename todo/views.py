@@ -1,5 +1,5 @@
-from django.contrib.auth import authenticate, login as auth_login, logout
-from django.shortcuts import render_to_response, render
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.shortcuts import render_to_response, render, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext, loader
 from django.contrib.auth.models import User
@@ -23,14 +23,35 @@ def login (request):
 
 
 def logout(request):
-    logout(request)
-    return HttpResponseRedirect('/')
+    auth_logout(request)
+    return HttpResponseRedirect('/home')
                               
-def status_report(request):  
+def status_report(request):    
+    
+    todo_list = Item.objects.all()
+    if (request.POST.get('Add')):
+        item1 = Item (title=request.POST.get ('Item'))
+        item1.save()
+    
+    elif (request.POST.get('delete') and todo_list and request.POST.get('listid')):
+        item2 = get_object_or_404 (Item, id =request.POST.get('listid'))
+        item2.delete()
+    todo_list = Item.objects.all()
+    template = loader.get_template('status_report.html')
+    context = RequestContext (request, {'todo_list': todo_list})
+    
 
-    todo_listing = []  
-    for todo_list in Item.objects.all():  
-        todo_dict = {}  
-        todo_dict['list_object'] = todo_list.title  
-        todo_listing.append(todo_dict)  
-    return render_to_response('status_report.html', { 'todo_listing': todo_listing })
+    return HttpResponse(template.render(context))
+
+
+def delete (request, todo_id):
+    items = Item.objects.all()
+    if request.method == "POST":
+        try:
+            litem = Item.objects.get (id = request.POST['todo_id'])
+            litem.deleted = not litem.deleted
+            litem.save()
+        except Item.DoesNotExist:
+            pass
+
+    return render_to_reponse ("status_report.html", {'items':items})
