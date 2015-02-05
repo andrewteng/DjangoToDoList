@@ -12,8 +12,11 @@
         <p></p>
         <h1> welcome, {{ user.get_username }} </h1>
         below are your current tasks:  <p></p>
-        {% for list_dict in todo_listing %}  
-      <li>{{ list_dict.list_object.title }}</li>
+        {% for todo_list in todo_listing %}
+        <form action = '' method ="POST">
+        {% csrf_token %}
+          <li>{{ list_dict.list_object.title }}</li> 
+          <b> {{item.title}}</b>
         {% endfor %}  
         <p></p><form>
           <form action="action_page.php">
